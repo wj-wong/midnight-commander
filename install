@@ -1,0 +1,1 @@
+sudo ln -s ~/.mc/bin/mc-wrapper ~/bin/mc-wrapper

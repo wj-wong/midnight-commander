@@ -1,0 +1,3 @@
+[submodule "lib/mc-solarized"]
+	path = lib/mc-solarized
+	url = git@github.com:iwfmp/mc-solarized-skin.git
