@@ -8,7 +8,7 @@ if [[ -z `command -v "mc"` ]]; then
 		[[ -z command -v ${evnDependency}]] && sudo apt-get install -y ${evnDependency}
 	done
 
-	# Get text
+	# GetText
 	cd $HOME/Downloads
 	sudo wget -O - http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz | tar xzf -
 	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
@@ -18,7 +18,7 @@ if [[ -z `command -v "mc"` ]]; then
 	sudo make
 	sudo make install
 
-	# Install Midnight commands via Git repository
+	# Install Midnight commands via Git repository for latest version.
 	cd /usr/local/share
 	sudo git clone git://midnight-commander.org/git/mc.git
 	cd /usr/local/share/mc
