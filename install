@@ -14,21 +14,11 @@ if [[ -z `command -v "mc"` ]]; then
 	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
 	sudo mv gettext-0.18.1.1 /usr/share/gettext
 	cd /usr/share/gettext
-	sudo ./configure
-	sudo make
-	sudo make install
+	sudo ./configure && sudo make && sudo make install
 
 	# Install Midnight commands via Git repository for latest version.
 	cd /usr/local/share
 	sudo git clone git://midnight-commander.org/git/mc.git
 	cd /usr/local/share/mc
-	sudo ./autogen.sh
-	sudo ./configure
-	sudo make
-	sudo make install
+	sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install
 done
-
-# Link configurations
-ln -s $HOME/Dropbox/Config/mc $HOME/.config/mc                                                ## Move configurations from dropbox
-sudo ln -s $HOME/.mc/lib/mc-solarized/solarized.ini /usr/local/share/mc/skins/solarized.ini   ## link skins to their proper place
-sudo rm -rf /usr/local/etc/mc && sudo ln -s $HOME/.config/mc/etc /usr/local/etc/mc            ## link configurations to their proper place
