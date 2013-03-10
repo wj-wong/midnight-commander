@@ -5,7 +5,7 @@ if [[ -z `command -v "mc"` ]]; then
 	# Install Dependencies
 	evnDependencies="cvs gcc make autoconf automake libtool libglib2.0-dev libslang2-dev intltool"
 	for evnDependency in $evnDependencies; do
-		[[ -z command -v ${evnDependency} ]] && sudo apt-get install -y ${evnDependency}
+		[[ -z `command -v ${evnDependency}` ]] && sudo apt-get install -y ${evnDependency}
 	done
 
 	# GetText
