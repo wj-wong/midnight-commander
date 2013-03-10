@@ -21,4 +21,4 @@ if [[ -z `command -v "mc"` ]]; then
 	sudo git clone git://midnight-commander.org/git/mc.git
 	cd /usr/local/share/mc
 	sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install
-done
+fi
