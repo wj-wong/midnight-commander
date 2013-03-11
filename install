@@ -9,7 +9,7 @@ if [[ -z `command -v "mc"` ]]; then
 	done
 
 	# GetText
-  if [[ -z `gettext --version | grep 0.18.1` ]]; then
+  if [[ -z `command -v "gettext"` || -z `gettext --version | grep 0.18.1` ]]; then
   	cd $HOME/Downloads
   	sudo wget -O - http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz | tar xzf -
   	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
