@@ -9,12 +9,14 @@ if [[ -z `command -v "mc"` ]]; then
 	done
 
 	# GetText
-	cd $HOME/Downloads
-	sudo wget -O - http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz | tar xzf -
-	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
-	sudo mv gettext-0.18.1.1 /usr/share/gettext
-	cd /usr/share/gettext
-	sudo ./configure && sudo make && sudo make install
+  if [[ -z `gettext --version | grep 0.18.1` ]]; then
+  	cd $HOME/Downloads
+  	sudo wget -O - http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz | tar xzf -
+  	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
+  	sudo mv gettext-0.18.1.1 /usr/share/gettext
+  	cd /usr/share/gettext
+  	sudo ./configure && sudo make && sudo make install
+  fi
 
 	# Install Midnight commands via Git repository for latest version.
 	cd /usr/local/share
