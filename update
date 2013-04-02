@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 cp -a $HOME/.config/mc/etc $HOME/.config/mc/etc.bak &&
 cd /usr/local/share/mc &&

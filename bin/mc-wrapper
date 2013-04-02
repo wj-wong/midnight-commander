@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Use this to exit to the last directory from mc
 
 MC_USER=`id | sed 's/[^(]*(//;s/).*//'`
