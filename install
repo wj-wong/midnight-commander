@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Install program and dependencies, if doesn't yet exist.
 if [[ -z `command -v "mc"` ]]; then
