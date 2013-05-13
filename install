@@ -2,26 +2,9 @@
 
 # Install program and dependencies, if doesn't yet exist.
 if [[ -z `command -v "mc"` ]]; then
-	# Install Dependencies
-	evnDependencies="cvs gcc make autoconf automake libtool libglib2.0-dev libslang2-dev intltool"
-	for evnDependency in $evnDependencies; do
-		[[ -z `command -v ${evnDependency}` ]] && sudo apt-get install -y ${evnDependency}
-	done
-
-	# GetText
-  if [[ -z `command -v "gettext"` || -z `gettext --version | grep 0.18.1` ]]; then
-  	cd $HOME/Downloads
-  	sudo wget -O - http://ftp.gnu.org/pub/gnu/gettext/gettext-0.18.1.1.tar.gz | tar xzf -
-  	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
-  	sudo mv gettext-0.18.1.1 /usr/share/gettext
-  	cd /usr/share/gettext
-  	sudo ./configure && sudo make && sudo make clean install
-  fi
-
-	# Install Midnight commands via Git repository for latest version.
+	sudo apt-get build-dep mc
 	cd /usr/local/src
-	rm -rf mc/
-	sudo git clone git://midnight-commander.org/git/mc.git
-	cd /usr/local/src/mc
+	sudo git clone https://github.com/MidnightCommander/mc.git
+	cd mc
 	sudo ./autogen.sh && sudo ./configure && sudo make && sudo make clean install
 fi
