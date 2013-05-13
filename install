@@ -15,13 +15,13 @@ if [[ -z `command -v "mc"` ]]; then
   	[[ -d /usr/share/gettext ]] && sudo rm -rf /usr/share/gettext
   	sudo mv gettext-0.18.1.1 /usr/share/gettext
   	cd /usr/share/gettext
-  	sudo ./configure && sudo make && sudo make install
+  	sudo ./configure && sudo make && sudo make clean install
   fi
 
 	# Install Midnight commands via Git repository for latest version.
-	cd /usr/local/share
+	cd /usr/local/src
 	rm -rf mc/
 	sudo git clone git://midnight-commander.org/git/mc.git
-	cd /usr/local/share/mc
-	sudo ./autogen.sh && sudo ./configure && sudo make && sudo make install
+	cd /usr/local/src/mc
+	sudo ./autogen.sh && sudo ./configure && sudo make && sudo make clean install
 fi
