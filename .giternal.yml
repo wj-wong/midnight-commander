@@ -1,0 +1,3 @@
+mc-solarized:
+  repo: git@github.com:iwfmp/mc-solarized-skin.git
+  path: lib
