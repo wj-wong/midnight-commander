@@ -1,8 +1,8 @@
 #!/bin/bash
 
-cp -a $HOME/.config/mc/etc $HOME/.config/mc/etc.bak &&
-cd /usr/local/src/mc &&
-sudo git reset --hard &&
-sudo git pull &&
-sudo ./autogen.sh && sudo ./configure && sudo make && sudo make clean install &&
-sudo chown -R $USER:$USER $HOME/.config/mc/etc
+# cp -a $HOME/.config/mc/etc $HOME/.config/mc/etc.bak &&
+# cd /usr/local/src/mc &&
+# sudo git reset --hard &&
+# sudo git pull &&
+# sudo ./autogen.sh && sudo ./configure && sudo make && sudo make clean install &&
+# sudo chown -R $USER:$USER $HOME/.config/mc/etc
