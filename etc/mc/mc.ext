@@ -12,22 +12,13 @@
 #          i.e. matches all the files *desc . Example: .tar matches *.tar;
 #          if it doesn't start with a dot, it matches only a file of that name)
 #
-#    shell/i (desc is, when starting with a dot, any extension (no wildcars),
-#          The same as shell but with case insensitive.
-#
 #    regex (desc is an extended regular expression)
 #          Please note that we are using the GNU regex library and thus
 #          \| matches the literal | and | has special meaning (or) and
 #          () have special meaning and \( \) stand for literal ( ).
 #
-#    regex/i (desc is an extended regular expression)
-#          The same as regex but with case insensitive.
-#
 #    type  (file matches this if `file %f` matches regular expression desc
 #          (the filename: part from `file %f` is removed))
-#
-#    type/i (file matches this if `file %f` matches regular expression desc)
-#          The same as type but with case insensitive.
 #
 #    directory (matches any directory matching regular expression desc)
 #
@@ -106,7 +97,21 @@
 
 ### Changes ###
 #
-# Reorganization: 2012-03-07 Slava Zanko <slavazanko@gmail.com>
+# Reorganization: 2000-05-01 Michal Svec <rebel@penguin.cz>
+
+
+### TODO ###
+#
+# Postscript	Open: ps2svga [gs -DEVICE=jpeg|zgv or something]
+# Images		asciiview
+#
+# All X Apps	[Nothing/Warning] if no DISPLAY
+# Not found	[Default/Warning]
+# Empty Output	[Default/Warning]
+# Edit:		CopyOut+EDIT+CopyIn
+# Security	Check gzip/bzip EDIT (mktemp)
+#
+# Maybe:	Open/XOpen/GOpen/KOpen/... for Console/X/GNOME/KDE/etc.
 
 
 ### GIT Repo ###
@@ -117,158 +122,158 @@ regex/^\[git\]
 
 ### Archives ###
 
-# .tgz, .tpz, .tar.gz, .tar.z, .tar.Z, .ipk, .gem, .war
-regex/\.t([gp]?z|ar\.g?[zZ])$|\.ipk$|\.gem$|\.war$
+# .tgz, .tpz, .tar.gz, .tar.z, .tar.Z, .ipk
+regex/\.t([gp]?z|ar\.g?[zZ])$|\.ipk|\.gem$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.gz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.gz
 
-shell/.tar.bz
+regex/\.tar\.bz$
 	# Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.bzip
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.bzip
 
 regex/\.t(ar\.bz2|bz2?|b2)$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.bzip2
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.bzip2
 
 # .tar.lzma, .tlz
 regex/\.t(ar\.lzma|lz)$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.lzma
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.lzma
 
 # .tar.xz, .txz
 regex/\.t(ar\.xz|xz)$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.xz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.xz
 
 # .tar.F - used in QNX
-shell/.tar.F
+regex/\.tar\.F$
 	# Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.F
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.F
 
 # .qpr/.qpk - QNX Neutrino package installer files
-regex/\.qp[rk]$
+regex/\.(qp[rk])$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar.qpr
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar.qpr
 
 # tar
-shell/i/.tar
+regex/\.(tar|TAR)$
 	Open=%cd %p/utar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view tar
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view tar
 
 # lha
 type/^LHa\ .*archive
 	Open=%cd %p/ulha://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view lha
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view lha
 
 # arj
-regex/i/\.a(rj|[0-9][0-9])$
+regex/\.a(rj|[0-9][0-9])$
 	Open=%cd %p/uarj://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view arj
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view arj
 
 # cab
-shell/i/.cab
+regex/\.([cC][aA][bB])$
 	Open=%cd %p/ucab://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view cab
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view cab
 
 # ha
-shell/i/.ha
+regex/\.([Hh][Aa])$
 	Open=%cd %p/uha://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view ha
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view ha
 
 # rar
-regex/i/\.r(ar|[0-9][0-9])$
+regex/\.[rR]([aA][rR]|[0-9][0-9])$
 	Open=%cd %p/urar://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view rar
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view rar
 
 # ALZip
-shell/i/.alz
+regex/\.(alz|ALZ)$
 	Open=%cd %p/ualz://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view alz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view alz
 
 # cpio
 shell/.cpio.Z
 	Open=%cd %p/ucpio://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view cpio.z
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view cpio.z
 
 shell/.cpio.xz
 	Open=%cd %p/ucpio://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view cpio.xz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view cpio.xz
 
 shell/.cpio.gz
 	Open=%cd %p/ucpio://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view cpio.gz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view cpio.gz
 
-shell/i/.cpio
+shell/.cpio
 	Open=%cd %p/ucpio://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view cpio
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view cpio
 
 # 7zip archives (they are not man pages)
-shell/i/.7z
+regex/\.(7z|7Z)$
 	Open=%cd %p/u7z://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view 7z
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view 7z
 
 # patch
 regex/\.(diff|patch)(\.bz2)$
 	Open=%cd %p/patchfs://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view bz2
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view bz2
 
 regex/\.(diff|patch)(\.(gz|Z))$
 	Open=%cd %p/patchfs://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view gz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view gz
 
 # ls-lR
 regex/(^|\.)ls-?lR(\.gz|Z|bz2)$
 	Open=%cd %p/lslR://
 
 # trpm
-shell/.trpm
+regex/\.trpm$
 	Open=%cd %p/trpm://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view trpm
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view trpm
 
 # RPM packages (SuSE uses *.spm for source packages)
 regex/\.(src\.rpm|spm)$
 	Open=%cd %p/rpm://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view src.rpm
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view src.rpm
 
-shell/.rpm
+regex/\.rpm$
 	Open=%cd %p/rpm://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view rpm
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view rpm
 
 # deb
 regex/\.u?deb$
 	Open=%cd %p/deb://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view deb
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view deb
 
 # dpkg
 shell/.debd
         Open=%cd %p/debd://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view debd
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view debd
 
 # apt
 shell/.deba
         Open=%cd %p/deba://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/package.sh view deba
+	View=%view{ascii} NONE/libexec/mc/ext.d/package.sh view deba
 
 # ISO9660
-shell/i/.iso
+regex/\.([iI][sS][oO])$
 	Open=%cd %p/iso9660://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view iso9660
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view iso9660
 
 
 regex/\.(diff|patch)$
 	Open=%cd %p/patchfs://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view cat
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view cat
 
 # ar library
 regex/\.s?a$
 	Open=%cd %p/uar://
 	#Open=%view{ascii} ar tv %f
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view ar
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view ar
 
 # gplib
-shell/i/.lib
+regex/\.([Ll][Ii][Bb])$
 	Open=%cd %p/ulib://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view lib
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view lib
 
 
 # Mailboxes
@@ -278,20 +283,24 @@ type/^ASCII\ mail\ text
 
 ### Sources ###
 
-# C/C++
-regex/i/\.(c|cc|cpp)$
-	Include=editor
-
-# C/C++ header
-regex/i/\.(h|hh|hpp)$
+# C
+shell/.c
 	Include=editor
 
 # Fortran
-shell/i/.f
+shell/.f
 	Include=editor
 
-# Assembler
-regex/i/\.(s|asm)$
+# Header
+regex/\.(h|hpp)$
+	Include=editor
+
+# Asm
+shell/.s
+	Include=editor
+
+# C++
+regex/\.(C|cc|cpp)$
 	Include=editor
 
 include/editor
@@ -299,12 +308,12 @@ include/editor
 
 # .so libraries
 regex/\.(so|so\.[0-9\.]*)$
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view so
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view so
 
 # Object
 type/^ELF
 	#Open=%var{PAGER:more} %f
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view elf
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view elf
 
 ### Documentation ###
 
@@ -313,24 +322,24 @@ type/^ELF
 
 # GNU Info page
 type/^Info\ text
- 	Open=/usr/local/libexec/mc/ext.d/text.sh open info
+ 	Open=NONE/libexec/mc/ext.d/text.sh open info
 
 shell/.info
-	Open=/usr/local/libexec/mc/ext.d/text.sh open info
+	Open=NONE/libexec/mc/ext.d/text.sh open info
 
 # Exception: .3gp are video files not manual pages
-shell/i/.3gp
+regex/\.(3[gG][pP])$
 	Include=video
 
 # Manual page
 regex/(([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])|\.man)$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man %var{PAGER:more}
 
 # Perl pod page
 shell/.pod
-	Open=/usr/local/libexec/mc/ext.d/text.sh open pod %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view pod %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open pod %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view pod %var{PAGER:more}
 
 # Troff with me macros.
 # Exception - "read.me" is not a nroff file.
@@ -339,38 +348,38 @@ shell/read.me
 	View=
 
 shell/.me
-	Open=/usr/local/libexec/mc/ext.d/text.sh open nroff.me %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view nroff.me %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open nroff.me %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view nroff.me %var{PAGER:more}
 
 # Troff with ms macros.
 shell/.ms
-	Open=/usr/local/libexec/mc/ext.d/text.sh open nroff.ms %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view nroff.ms %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open nroff.ms %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view nroff.ms %var{PAGER:more}
 
 # Manual page - compressed
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.g?[Zz]$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man.gz %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man.gz %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man.gz %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man.gz %var{PAGER:more}
 
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.bz$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man.bz %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man.bz %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man.bz %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man.bz %var{PAGER:more}
 
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.bz2$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man.bz2 %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man.bz2 %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man.bz2 %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man.bz2 %var{PAGER:more}
 
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.lzma$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man.lzma %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man.lzma %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man.lzma %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man.lzma %var{PAGER:more}
 
 regex/([^0-9]|^[^\.]*)\.([1-9][A-Za-z]*|[ln])\.xz$
-	Open=/usr/local/libexec/mc/ext.d/text.sh open man.xz %var{PAGER:more}
-	View=%view{ascii,nroff} /usr/local/libexec/mc/ext.d/text.sh view man.xz %var{PAGER:more}
+	Open=NONE/libexec/mc/ext.d/text.sh open man.xz %var{PAGER:more}
+	View=%view{ascii,nroff} NONE/libexec/mc/ext.d/text.sh view man.xz %var{PAGER:more}
 
 # CHM
-shell/i/.chm
-	Open=/usr/local/libexec/mc/ext.d/text.sh open chm
+regex/\.(chm|CHM)$
+	Open=NONE/libexec/mc/ext.d/text.sh open chm
 
 ### Images ###
 
@@ -378,19 +387,13 @@ type/^GIF
 	Include=image
 
 type/^JPEG
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/image.sh view jpeg
+	View=%view{ascii} NONE/libexec/mc/ext.d/image.sh view jpeg
 	Include=image
 
 type/^PC\ bitmap
 	Include=image
 
 type/^PNG
-	Include=image
-
-type/^JNG
-	Include=image
-
-type/^MNG
 	Include=image
 
 type/^TIFF
@@ -409,212 +412,186 @@ type/^Netpbm
 	Include=image
 
 shell/.xcf
-	Open=/usr/local/libexec/mc/ext.d/image.sh open xcf
+	Open=NONE/libexec/mc/ext.d/image.sh open xcf
 
 shell/.xbm
-	Open=/usr/local/libexec/mc/ext.d/image.sh open xbm
+	Open=NONE/libexec/mc/ext.d/image.sh open xbm
 
 shell/.xpm
 	Include=image
-	View=/usr/local/libexec/mc/ext.d/image.sh view xpm %f
+	View=NONE/libexec/mc/ext.d/image.sh view xpm %f
 
 shell/.ico
 	Include=image
 
-shell/i/.svg
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/image.sh view svg
-	Open=/usr/local/libexec/mc/ext.d/image.sh open svg
-
 include/image
-	Open=/usr/local/libexec/mc/ext.d/image.sh open ALL_FORMATS
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/image.sh view ALL_FORMATS
+	Open=NONE/libexec/mc/ext.d/image.sh open ALL_FORMATS
+	View=%view{ascii} NONE/libexec/mc/ext.d/image.sh view ALL_FORMATS
 
 
 ### Sound files ###
 
-regex/i/\.(wav|snd|voc|au|smp|aiff|snd|m4a|ape|aac|wv)$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open common
+regex/\.([wW][aA][vV]|[sS][nN][dD]|[vV][oO][cC]|[aA][uU]|[sS][mM][pP]|[aA][iI][fF][fF]|[sS][nN][dD])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open common
 
-regex/i/\.(mod|s3m|xm|it|mtm|669|stm|ult|far)$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open mod
+regex/\.([mM][oO][dD]|[sS]3[mM]|[xX][mM]|[iI][tT]|[mM][tT][mM]|669|[sS][tT][mM]|[uU][lL][tT]|[fF][aA][rR])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open mod
 
-shell/i/.waw22
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open wav22
+regex/\.([wW][aA][wW]22)$
+	Open=NONE/libexec/mc/ext.d/sound.sh open wav22
 
-shell/i/.mp3
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open mp3
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/sound.sh view mp3
+regex/\.([mM][pP]3)$
+	Open=NONE/libexec/mc/ext.d/sound.sh open mp3
+	View=%view{ascii} NONE/libexec/mc/ext.d/sound.sh view mp3
 
-regex/i/\.og[gax]$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open ogg
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/sound.sh view ogg
+regex/\.([oO][gG][gG|aA|vV|xX])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open ogg
+	View=%view{ascii} NONE/libexec/mc/ext.d/sound.sh view ogg
 
-regex/i/\.(spx|flac)$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open common
+regex/\.([sS][pP][xX]|[fF][lL][aA][cC])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open common
 
-regex/i/\.(midi?|rmid?)$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open midi
+regex/\.([mM][iI][dD][iI]?|[rR][mM][iI][dD]?)$
+	Open=NONE/libexec/mc/ext.d/sound.sh open midi
 
-shell/i/.wma
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open wma
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/sound.sh view wma
+regex/\.([wW][mM][aA])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open wma
+	View=%view{ascii} NONE/libexec/mc/ext.d/sound.sh view wma
 
 
 ### Play lists ###
 
-regex/i/\.(m3u|pls)$
-	Open=/usr/local/libexec/mc/ext.d/sound.sh open playlist
+regex/\.([mM]3[uU]|[pP][lL][sS])$
+	Open=NONE/libexec/mc/ext.d/sound.sh open playlist
 
 
 ### Video ###
 
-shell/i/.avi
+regex/\.([aA][vV][iI])$
 	Include=video
 
-regex/i/\.as[fx]$
+regex/\.([aA][sS][fFxX])$
 	Include=video
 
-shell/i/.divx
+regex/\.([dD][iI][vV][xX])$
 	Include=video
 
-shell/i/.mkv
+regex/\.([mM][kK][vV])$
 	Include=video
 
-regex/i/\.(mov|qt)$
+regex/\.([mM][oO][vV]|[qQ][tT])$
 	Include=video
 
-regex/i/\.(mp4|m4v|mpe?g)$
+regex/\.([mM][pP]4|[mM]4[vV]|[mM][pP][eE]?[gG])$
 	Include=video
 
 # MPEG-2 TS container + H.264 codec
-shell/i/.mts
+regex/\.([mM][tT][sS])$
 	Include=video
 
-shell/i/.ts
+regex/\.([tT][sS])$
 	Include=video
 
-shell/i/.vob
+regex/\.([vV][oO][bB])$
 	Include=video
 
-shell/i/.wmv
+regex/\.([wW][mM][vV])$
 	Include=video
 
-regex/i/\.fl[icv]$
+regex/\.([fF][lL][iIcCvV])$
 	Include=video
 
-shell/i/.ogv
+regex/\.([oO][gG][mM])$
 	Include=video
 
-regex/i/\.ra?m$
-	Open=/usr/local/libexec/mc/ext.d/video.sh open ram
+regex/\.([rR][aA]?[mM])$
+	Open=NONE/libexec/mc/ext.d/video.sh open ram
 
 # WebM
-shell/i/.webm
+regex/\.([wW][eE][bB][mM])$
     Include=video
 
 type/WebM
     Include=video
 
 include/video
-	Open=/usr/local/libexec/mc/ext.d/video.sh open ALL_FORMATS
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/video.sh view ALL_FORMATS
+	Open=NONE/libexec/mc/ext.d/video.sh open ALL_FORMATS
+	View=%view{ascii} NONE/libexec/mc/ext.d/video.sh view ALL_FORMATS
 
 
 ### Documents ###
 
 # Postscript
 type/^PostScript
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open ps
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view ps
+	Open=NONE/libexec/mc/ext.d/doc.sh open ps
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view ps
 
 # PDF
 type/^PDF
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open pdf
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view pdf
+	Open=NONE/libexec/mc/ext.d/doc.sh open pdf
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view pdf
 
 # html
-regex/i/\.html?$
-	Open=/usr/local/libexec/mc/ext.d/web.sh open html
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/web.sh view html
+regex/\.([hH][tT][mM][lL]?)$
+	Open=NONE/libexec/mc/ext.d/web.sh open html
+	View=%view{ascii} NONE/libexec/mc/ext.d/web.sh view html
 
 # StarOffice 5.2
 shell/.sdw
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open ooffice
+	Open=NONE/libexec/mc/ext.d/doc.sh open ooffice
 
 # StarOffice 6 and OpenOffice.org formats
-regex/i/\.(odt|ott|sxw|stw|ods|ots|sxc|stc|odp|otp|sxi|sti|odg|otg|sxd|std|odb|odf|sxm|odm|sxg)$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open ooffice
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view odt
+regex/\.(odt|ott|sxw|stw|ods|ots|sxc|stc|odp|otp|sxi|sti|odg|otg|sxd|std|odb|odf|sxm|odm|sxg)$
+	Open=NONE/libexec/mc/ext.d/doc.sh open ooffice
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view odt
 
 # AbiWord
 shell/.abw
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open abw
-
-# Gnumeric
-shell/i/.gnumeric
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open gnumeric
+	Open=NONE/libexec/mc/ext.d/doc.sh open abw
 
 # Microsoft Word Document
-regex/i/\.(do[ct]|wri)$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msdoc
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view msdoc
+regex/\.([Dd][oO][cCtT]|[Ww][rR][iI])$
+	Open=NONE/libexec/mc/ext.d/doc.sh open msdoc
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view msdoc
 type/^Microsoft\ Word
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msdoc
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view msdoc
+	Open=NONE/libexec/mc/ext.d/doc.sh open msdoc
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view msdoc
 
 # RTF document
-shell/i/.rtf
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msdoc
+regex/\.([rR][tT][fF])$
+	Open=NONE/libexec/mc/ext.d/doc.sh open msdoc
 
 # Microsoft Excel Worksheet
-regex/i/\.xl[sw]$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msxls
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view msxls
+regex/\.([xX][lL][sSwW])$
+	Open=NONE/libexec/mc/ext.d/doc.sh open msxls
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view msxls
 type/^Microsoft\ Excel
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msxls
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view msxls
-
-regex/i/\.(ppt|pps)$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open msppt
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view msppt
+	Open=NONE/libexec/mc/ext.d/doc.sh open msxls
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view msxls
 
 # Use OpenOffice.org to open any MS Office documents
 type/^Microsoft\ Office\ Document
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open ooffice
+	Open=NONE/libexec/mc/ext.d/doc.sh open ooffice
 
 # Framemaker
 type/^FrameMaker
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open framemaker
+	Open=NONE/libexec/mc/ext.d/doc.sh open framemaker
 
 # DVI
-shell/i/.dvi
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open dvi
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view dvi
+regex/\.([dD][vV][iI])$
+	Open=NONE/libexec/mc/ext.d/doc.sh open dvi
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view dvi
 
 # TeX
-shell/i/.tex
+regex/\.([Tt][Ee][Xx])$
 	Include=editor
 
 # DjVu
-regex/i/\.djvu?$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open djvu
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view djvu
-
-# Comic Books
-regex/i/\.cb[zr]$
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open comic
-
-# Epub
-shell/i/.epub
-	Open=/usr/local/libexec/mc/ext.d/doc.sh open epub
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/doc.sh view epub
-
+regex/\.(djvu?|DJVU?)$
+	Open=NONE/libexec/mc/ext.d/doc.sh open djvu
+	View=%view{ascii} NONE/libexec/mc/ext.d/doc.sh view djvu
 
 ### Miscellaneous ###
-
-# Compiled Java classes
-shell/.class
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view javaclass
 
 # Makefile
 regex/[Mm]akefile$
@@ -622,113 +599,104 @@ regex/[Mm]akefile$
 
 # Imakefile
 shell/Imakefile
-	Open=/usr/local/libexec/mc/ext.d/misc.sh open imakefile
+	Open=NONE/libexec/mc/ext.d/misc.sh open imakefile
 
 # Makefile.PL (MakeMaker)
 regex/^Makefile.(PL|pl)$
 	Open=%var{PERL:perl} %f
 
-# sqlite3.db
-type/^SQLite 3.x database
-	Open=/usr/local/libexec/mc/ext.d/misc.sh open sqlite
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view sqlite
-
 # dbf
-shell/i/.dbf
-	Open=/usr/local/libexec/mc/ext.d/misc.sh open dbf
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view dbf
+regex/\.([dD][bB][fF])$
+	Open=%view{ascii} NONE/libexec/mc/ext.d/misc.sh open dbf
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view dbf
 
 # REXX script
 regex/\.(rexx?|cmd)$
        Open=rexx %f %{Enter parameters};echo "Press ENTER";read y
 
 # Disk images for Commodore computers (VIC20, C64, C128)
-shell/i/.d64
+regex/\.(d64|D64)$
 	Open=%cd %p/uc1541://
 	View=%view{ascii} c1541 %f -list
 	Extract=c1541 %f -extract
 
 # Glade, a user interface designer for GTK+ and GNOME
-shell/i/.glade
-	Open=/usr/local/libexec/mc/ext.d/misc.sh open glade
+regex/\.([Gg][Ll][Aa][Dd][Ee])$
+	Open=NONE/libexec/mc/ext.d/misc.sh open glade
 
 # Gettext Catalogs
 shell/.mo
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view mo
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view mo
 
 # lyx
-shell/i/.lyx
-	Open=/usr/local/libexec/mc/ext.d/misc.sh open lyx
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view lyx
+regex/\.(lyx|LYX)$
+	Open=NONE/libexec/mc/ext.d/misc.sh open lyx
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view lyx
 
 # torrent
-shell/i/.torrent
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/misc.sh view torrent
+regex/\.([tT][oO][rR][rR][eE][nN][tT])$
+	View=%view{ascii} NONE/libexec/mc/ext.d/misc.sh view torrent
 
 ### Plain compressed files ###
 
 # ace
-shell/i/.ace
+regex/\.(ace|ACE)$
 	Open=%cd %p/uace://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view ace
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view ace
 	Extract=unace x %f
 
 # arc
-shell/i/.arc
+regex/\.(arc|ARC)$
 	Open=%cd %p/uarc://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view arc
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view arc
 	Extract=arc x %f '*'
 	Extract (with flags)=I=%{Enter any Arc flags:}; if test -n "$I"; then arc x $I %f; fi
 
 # zip
-type/i/^zip\ archive
+type/^([Zz][Ii][Pp])\ archive
 	Open=%cd %p/uzip://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view zip
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view zip
 
 # zoo
-shell/i/.zoo
+regex/\.([Zz][Oo][Oo])$
 	Open=%cd %p/uzoo://
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view zoo
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view zoo
 
 # gzip
 type/^gzip
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view gz %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view gz
+	Open=NONE/libexec/mc/ext.d/archive.sh view gz %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view gz
 
 regex/\.(gz|Z)$
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view gz
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view gz
 
 # bzip2
 type/^bzip2
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view bzip2 %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view bz2
+	Open=NONE/libexec/mc/ext.d/archive.sh view bzip2 %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view bz2
 
 regex/\.bz2?$
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view bz2
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view bz2
 
 # bzip
 type/^bzip
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view bzip %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view bzip
+	Open=NONE/libexec/mc/ext.d/archive.sh view bzip %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view bzip
 
 # compress
 type/^compress
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view gz %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view gz
+	Open=NONE/libexec/mc/ext.d/archive.sh view gz %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view gz
 
 # lzma
 regex/\.lzma$
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view lzma %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view lzma
+	Open=NONE/libexec/mc/ext.d/archive.sh view lzma %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view lzma
 
 # xz
 regex/\.xz$
-	Open=/usr/local/libexec/mc/ext.d/archive.sh view xz %var{PAGER:more}
-	View=%view{ascii} /usr/local/libexec/mc/ext.d/archive.sh view xz
-
-# Parity Archive
-type/^Parity\ Archive\ Volume\ Set
-	Open=/usr/local/libexec/mc/ext.d/archive.sh open par2
+	Open=NONE/libexec/mc/ext.d/archive.sh view xz %var{PAGER:more}
+	View=%view{ascii} NONE/libexec/mc/ext.d/archive.sh view xz
 
 ### Default ###
 
