@@ -1,0 +1,10 @@
+GROUP "Home"
+  ENTRY "Home" URL "~"
+  ENTRY "Downloads" URL "~/Downloads"
+  ENTRY "Notes" URL "~/PlayGround/Notes"
+ENDGROUP
+GROUP "System"
+  ENTRY "Etc" URL "/etc"
+  ENTRY "Nginx" URL "/etc/nginx/sites-enabled"
+  ENTRY "Sites" URL "/var/www"
+ENDGROUP
